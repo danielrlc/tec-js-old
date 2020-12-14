@@ -102,17 +102,28 @@ const phrases = [
 ];
 
 const phraseList = document.querySelector('#phrase-list');
+let searchInput = '';
 
-let showPhrases = phrases.map((phrase) => {
-  const tr = document.createElement('tr');
-  const td = document.createElement('td');
-  td.textContent = phrase;
-  tr.appendChild(td);
-  phraseList.appendChild(tr);
-});
+let renderPhrases = () => {
+  phraseList.textContent = '';
+  return phrases
+    .filter((phrase) => phrase.includes(searchInput))
+    .map((phrase) => {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.textContent = phrase;
+      tr.appendChild(td);
+      phraseList.appendChild(tr);
+    });
+};
+
+const handleSearchInput = (event) => {
+  searchInput = event.target.value;
+  renderPhrases();
+};
 
 const searchForPhrase = document.querySelector('#search-for-phrase');
 
+searchForPhrase.addEventListener('keyup', handleSearchInput);
 
-
-
+renderPhrases();
