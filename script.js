@@ -101,29 +101,61 @@ const phrases = [
   `I didn't know where it came from.`,
 ];
 
-const phraseList = document.querySelector('#phrase-list');
-let searchInput = '';
+const A1 = 'A1';
+const A2 = 'A2';
 
-let renderPhrases = () => {
-  phraseList.textContent = '';
-  return phrases
-    .filter((phrase) => phrase.includes(searchInput))
-    .map((phrase) => {
-      const tr = document.createElement('tr');
-      const td = document.createElement('td');
-      td.textContent = phrase;
-      tr.appendChild(td);
-      phraseList.appendChild(tr);
-    });
-};
+const correctedPhrases = [
+  {
+    wrong: 'What time it is?',
+    right: 'What time is it?',
+    level: A1,
+    perpetrators: ['ilpon'],
+  },
+  {
+    wrong: 'Where you are?',
+    right: 'Where are you?',
+    level: A1,
+    perpetrators: ['ilpon', 'jukkar'],
+  },
+];
 
-const handleSearchInput = (event) => {
-  searchInput = event.target.value;
-  renderPhrases();
-};
+const correctedPhraseList = document.querySelector('#corrected-phrases');
 
-const searchForPhrase = document.querySelector('#search-for-phrase');
+correctedPhrases.map((phrase) => {
+  const tr = document.createElement('tr');
+  const tdWrong = document.createElement('td');
+  const tdRight = document.createElement('td');
+  tdWrong.textContent = phrase.wrong;
+  tdWrong.className = 'wrong-text';
+  tdRight.textContent = phrase.right;
+  tr.appendChild(tdWrong);
+  tr.appendChild(tdRight);
+  correctedPhraseList.appendChild(tr);
+});
 
-searchForPhrase.addEventListener('keyup', handleSearchInput);
+// const phraseList = document.querySelector('#phrase-list');
+// let searchInput = '';
 
-renderPhrases();
+// let renderPhrases = () => {
+//   phraseList.textContent = '';
+//   return phrases
+//     .filter((phrase) => phrase.includes(searchInput))
+//     .map((phrase) => {
+//       const tr = document.createElement('tr');
+//       const td = document.createElement('td');
+//       td.textContent = phrase;
+//       tr.appendChild(td);
+//       phraseList.appendChild(tr);
+//     });
+// };
+
+// const handleSearchInput = (event) => {
+//   searchInput = event.target.value;
+//   renderPhrases();
+// };
+
+// const searchForPhrase = document.querySelector('#search-for-phrase');
+
+// searchForPhrase.addEventListener('keyup', handleSearchInput);
+
+// renderPhrases();

@@ -26,3 +26,8 @@ input {
   margin-top: 20px;
   padding: 10px;
 }
+
+.wrong-text {
+  text-decoration: line-through;
+  padding-right: 30px;
+}
